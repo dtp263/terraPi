@@ -1,0 +1,5 @@
+
+
+## Dependencies
+    - Terraform
+    - Kubernetes
