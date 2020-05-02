@@ -42,11 +42,6 @@ resource "null_resource" "raspberry_pi_bootstrap" {
       "curl https://github.com/dtp263/terraPi/blob/master/build_scripts/k8s_install.sh > /home/pi/k8s_prep.sh",
       "chmod u+x k8s_prep.sh",
 
-      # COPY HELM & TILLER SETUP
-      # "curl https://raw.githubusercontent.com/clayshek/terraform-raspberrypi-bootstrap/master/helm/tiller-rbac-config.yml > /home/pi/helm/tiller-rbac-config.yml",
-      # "curl https://raw.githubusercontent.com/clayshek/terraform-raspberrypi-bootstrap/master/helm/install-helm-tiller.sh > /home/pi/helm/install-helm-tiller.sh",
-      # "chmod u+x helm/install-helm-tiller.sh",
-
       # OPTIMIZE GPU MEMORY
       "echo 'gpu_mem=16' | sudo tee -a /boot/config.txt",
 
