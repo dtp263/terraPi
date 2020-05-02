@@ -1,46 +1,8 @@
 # Assume you have Raspbian lite installed on raspberry pi. with a static IP setup.
 
-# ---- START common setup ---- #
-
-# Install docker
-curl -sSL get.docker.com | sh && \
-sudo usermod pi -aG docker && \
-newgrp docker
-
-# disable swap because k8s does not like
-sudo dphys-swapfile swapoff && \
-sudo dphys-swapfile uninstall && \
-sudo update-rc.d dphys-swapfile remove && \
-sudo systemctl disable dphys-swapfile
-
-
-sudo cp /boot/cmdline.txt /boot/cmdline_backup.txt && \
-orig="$(head -n1 /boot/cmdline.txt) cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory" && \
-echo $orig | sudo tee /boot/cmdline.txt 
-
-sudo reboot
-# wait a min
-
-## SSH back into the pi
-mkdir -p /etc/apt/sources.list.d/kubernetes.list
-
-echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" >> /etc/apt/sources.list.d/kubernetes.list
-
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-## Expect output "OK"
-
-sudo reboot
-# wait a min
-
-## SSH back into the pi
-sudo apt-get install -qy kubeadm
-
-# ---- END common setup ---- #
-
 # ---- START master setup ---- #
-sudo kubeadm config images pull -v3
-
-sudo kubeadm init --token-ttl=0
+sudo kubeadm config images pull -v3 && \
+    sudo kubeadm init --token-ttl=0
 
 ## ^^^ takes a long time ^^^ ##
 
