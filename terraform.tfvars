@@ -9,7 +9,7 @@ username       = "pi"
 password       = "raspberry"
 
 # CONIGURATION PARAMETERS
-new_hostname = "slave-3"
+new_hostname = "k8s-node-1"
 new_password = "password"
 # Validate timezone correctness against 'timedatectl list-timezones' 
 timezone = "America/New_York"
