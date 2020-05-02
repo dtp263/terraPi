@@ -1,11 +1,11 @@
-# Default values for raspberry-pi.
+# Default values for gofire.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: dtp263/gofire
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -31,8 +31,18 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
-  port: 80
+  type: NodePort
+  port: 8000
+
+gofire: 
+  isMaster: true
+  masterHost: ""
+  host: ""
+  port: 8000
+  mockGpio: true
+
+port:
+  gofireService: 8000
 
 ingress:
   enabled: false
@@ -61,6 +71,8 @@ resources: {}
 
 nodeSelector: {}
 
-tolerations: []
+tolerations:
+  - key: "node-role.kubernetes.io/master"
+    operator: "Exists"
 
 affinity: {}

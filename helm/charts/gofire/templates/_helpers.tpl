@@ -2,7 +2,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "raspberry-pi.name" -}}
+{{- define "gofire.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
@@ -11,7 +11,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "raspberry-pi.fullname" -}}
+{{- define "gofire.fullname" -}}
 {{- if .Values.fullnameOverride -}}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
@@ -27,16 +27,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "raspberry-pi.chart" -}}
+{{- define "gofire.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/*
 Common labels
 */}}
-{{- define "raspberry-pi.labels" -}}
-helm.sh/chart: {{ include "raspberry-pi.chart" . }}
-{{ include "raspberry-pi.selectorLabels" . }}
+{{- define "gofire.labels" -}}
+helm.sh/chart: {{ include "gofire.chart" . }}
+{{ include "gofire.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -46,17 +46,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "raspberry-pi.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "raspberry-pi.name" . }}
+{{- define "gofire.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "gofire.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "raspberry-pi.serviceAccountName" -}}
+{{- define "gofire.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create -}}
-    {{ default (include "raspberry-pi.fullname" .) .Values.serviceAccount.name }}
+    {{ default (include "gofire.fullname" .) .Values.serviceAccount.name }}
 {{- else -}}
     {{ default "default" .Values.serviceAccount.name }}
 {{- end -}}
