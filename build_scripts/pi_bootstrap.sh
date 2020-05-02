@@ -1,7 +1,6 @@
 # Install docker
 curl -sSL get.docker.com | sh && \
-    sudo usermod pi -aG docker && \
-    newgrp docker
+    sudo usermod pi -aG docker
 
 # disable swap because k8s does not like
 echo "Disabling swap --> should result in OK"
@@ -17,9 +16,9 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
   sudo apt-get install -qy kubeadm
 
 
-sudo cp /boot/cmdline.txt /boot/cmdline_backup.txt && \
-    orig="$(head -n1 /boot/cmdline.txt) cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory" && \
-    echo $orig | sudo tee /boot/cmdline.txt 
+sudo cp /boot/cmdline.txt /boot/cmdline_backup.txt
+orig="$(head -n1 /boot/cmdline.txt) cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory"
+echo $orig | sudo tee /boot/cmdline.txt 
 
 echo "Rebooting now. SSH back in after a few seconds"
 

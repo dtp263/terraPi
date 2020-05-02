@@ -28,6 +28,9 @@ sudo sysctl net.bridge.bridge-nf-call-iptables=1
 
 # run the command you saved from the kubeadm init execution on your master node. It should look like this:
 # sudo kubeadm join --token <token> <master-node-ip>:6443 --discovery-token-ca-cert-hash sha256:<sha256>
+# sudo kubeadm join --token b4v8h9.kd1lu6tp8lbq1lc2 192.168.1.100:6443 --discovery-token-ca-cert-hash sha256:71de8c2628ef06ec564dfe26f18ad385a3e0fba65c957db09eac1ecb143f9469
 
 
 # ---- END slave setup ---- #
+
+

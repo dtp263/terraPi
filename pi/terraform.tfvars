@@ -4,12 +4,12 @@
 # terraform apply -var 'password=PASSWORD' -var 'new_password=NEWPASS'
 
 # CONNECTION PARAMETERS
-raspberrypi_ip = "192.168.1.37"
+raspberrypi_ip = "192.168.1.103"
 username       = "pi"
-password       = "raspberry"
+password       = "password"
 
 # CONIGURATION PARAMETERS
-new_hostname = "k8s-node-1"
+new_hostname = "k8s-node-3"
 new_password = "password"
 # Validate timezone correctness against 'timedatectl list-timezones' 
 timezone = "America/New_York"
@@ -17,7 +17,7 @@ timezone = "America/New_York"
 # NETWORK CONFIGURATION PARAMETERS
 # See man dhcpcd.conf for further info and examples. 
 # Get these right or risk loss of network connectivity.
-static_ip_and_mask = "192.168.1.103/24"
+static_ip_and_mask = "192.168.1.102/24"
 static_router      = "192.168.1.1"
 static_dns         = "192.168.1.1"
 

@@ -39,7 +39,7 @@ resource "null_resource" "raspberry_pi_bootstrap" {
       "echo 'interface eth0\nstatic ip_address=${var.static_ip_and_mask}\nstatic routers=${var.static_router}\nstatic domain_name_servers=${var.static_dns}' | cat >> /etc/dhcpcd.conf",
 
       # COPY KUBERNETES PREP SCRIPT
-      "curl https://github.com/dtp263/terraPi/blob/master/build_scripts/pi_bootstrap.sh > /home/pi/k8s_prep.sh",
+      "curl https://raw.githubusercontent.com/dtp263/terraPi/master/build_scripts/pi_bootstrap.sh > /home/pi/k8s_prep.sh",
       "chmod u+x k8s_prep.sh",
 
       # OPTIMIZE GPU MEMORY
